@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body ng-app="myApp" ng-controller="myCtrl">
+    <input name="myInput" ng-model="myInput" ng-change="inputChanged()"/><span>{{myInput | dateFormat}}</span>
+<ul>
+</ul>
+
+<script>
+var app = angular.module('myApp', []);
+app.filter('dateFormat', function() {
+    return function(x) {
+        if (x!=undefined && x.length==8 && !x.includes('.')) {
+            var retval=x.substring(0,2)+'.'+x.substring(2,4)+'.'+x.substring(4,8);
+            return retval;
+        }
+        return x;
+    };
+});
+app.controller('myCtrl', ['$scope','dateFormatFilter',function($scope,dateFormatFilter) {
+    $scope.inputChanged= function() {
+        $scope.myInput=dateFormatFilter($scope.myInput);
+    }
+}]);
+</script>
+
+</body>
+</html>
