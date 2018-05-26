@@ -3,8 +3,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <body ng-app="myApp" ng-controller="myCtrl">
     <input name="myInput" ng-model="myInput" ng-change="inputChanged()"/><span>{{myInput | dateFormat}}</span>
-<ul>
-</ul>
 
 <script>
 var app = angular.module('myApp', []);
